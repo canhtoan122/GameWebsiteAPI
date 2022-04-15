@@ -22,7 +22,11 @@ namespace GameWebsiteAPI.Controllers
         {
             return Ok(await _context.Comment.ToListAsync());
         }
-
+        [HttpGet("Get_UserProfile")]
+        public async Task<ActionResult<List<UserProfile>>> Get_UserProfile()
+        {
+            return Ok(await _context.UserProfile.ToListAsync());
+        }
         [HttpPost]
         public async Task<ActionResult<List<Comment>>> Add(Comment comment)
         {

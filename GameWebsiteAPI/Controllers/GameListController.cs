@@ -30,23 +30,8 @@ namespace GameWebsiteAPI.Controllers
         [HttpGet("search")]
         public async Task<ActionResult<IEnumerable<GameList>>> Game_Search(string name)
         {
-            try
-            {
-                IQueryable<GameList> query = _context.GameList;
-                if (!string.IsNullOrEmpty(name))
-                {
-                    query = query.Where(e => e.Name.Contains(name));
-                }
-                if (query.Any())
-                {
-                    return Ok(query);
-                }
-                return NotFound();
-            }
-            catch (Exception)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retreiving data from the database");
-            }
+            var game = await _context.GameList.Where(c => c.Name == name).ToListAsync();
+            return game;
         }
 
         [Authorize(Roles = "GameSeller")]
