@@ -1,5 +1,6 @@
 ﻿using GameWebsiteAPI.Data;
 using GameWebsiteAPI.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -48,6 +49,7 @@ namespace GameWebsiteAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "GameSeller")]
         [HttpPost]
         public async Task<ActionResult<List<GameList>>> Add(GameList game)
         {
@@ -57,6 +59,7 @@ namespace GameWebsiteAPI.Controllers
             return Ok(await _context.GameList.ToListAsync());
         }
 
+        [Authorize(Roles = "GameSeller")]
         [HttpPut]
         public async Task<ActionResult<List<GameList>>> Update(GameList request)
         {
@@ -74,6 +77,7 @@ namespace GameWebsiteAPI.Controllers
             return Ok(await _context.GameList.ToListAsync());
         }
 
+        [Authorize(Roles = "GameSeller")]
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<GameList>>> Delete(int id)
         {
@@ -89,6 +93,7 @@ namespace GameWebsiteAPI.Controllers
 
         [HttpPost("Post File")]
         [Consumes("multipart/form-data")]
+        [Authorize(Roles = "GameSeller")]
         public async Task<HttpResponseMessage> PostAsync([FromForm] FileManagement model)
         {
             try
@@ -160,6 +165,7 @@ namespace GameWebsiteAPI.Controllers
         }
 
         [HttpGet("Get All file")]
+        [Authorize(Roles = "GameSeller")]
         public List<FileRecord> GetAllFiles()
         {
             //getting data from inmemory obj
@@ -176,6 +182,7 @@ namespace GameWebsiteAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "GameSeller")]
         public async Task<IActionResult> DownloadFile(int id)
         {
             if (!Directory.Exists(AppDirectory))
@@ -200,6 +207,7 @@ namespace GameWebsiteAPI.Controllers
             return File(memory, contentType, fileName);
         }
         [HttpDelete("Delete file")]
+        [Authorize(Roles = "GameSeller")]
         public async Task<ActionResult> DeleteFile(int id)
         {
             var file = _context.FileData.Where(n => n.Id == id).FirstOrDefault();

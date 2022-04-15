@@ -1,4 +1,5 @@
 ﻿using GameWebsiteAPI.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -22,6 +23,7 @@ namespace GameWebsiteAPI.Controllers
         }
 
         [HttpPost("register")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<GameSellerRegister>> Register(GameSellerDto request)
         {
             CreatePasswordHash(request.GameSeller_password, out byte[] GameSeller_passwordHash, out byte[] GameSeller_passwordSalt);
