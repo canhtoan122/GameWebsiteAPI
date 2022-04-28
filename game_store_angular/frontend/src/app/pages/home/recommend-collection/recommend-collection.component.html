@@ -1,0 +1,26 @@
+<div class="container" contentAnim aniName="fadeInUpShorter">
+    <div class="heading heading-flex mb-3">
+        <div class="heading-left mb-2">
+            <h2 class="title">Consoles & Accessories</h2>
+        </div>
+
+        <div class="heading-right mb-2">
+            <a routerLink="/shop/sidebar/list" class="title-link">View more products <i
+                    class="icon-long-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <owl-carousel carouselClasses="owl-simple console-carousel carousel-equal-height carousel-with-shadow"
+        [options]="productSlider" *ngIf="!loaded else loadedBlock">
+        <div class="skel-pro" *ngFor="let item of [1,2,3,4,5,6]"></div>
+    </owl-carousel>
+    <ng-template #loadedBlock>
+        <owl-carousel carouselClasses="owl-simple console-carousel carousel-equal-height carousel-with-shadow"
+            [options]="productSlider">
+            <molla-product-twelve [product]="product" *ngFor="let product of products" [isRecommend]="true">
+            </molla-product-twelve>
+        </owl-carousel>
+    </ng-template>
+
+    <div class="mb-7"></div>
+</div>

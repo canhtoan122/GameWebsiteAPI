@@ -1,0 +1,81 @@
+<div class="container" contentAnim aniName="fadeInUpShorter">
+    <div class="heading heading-flex mb-2 mb-lg-3">
+        <div class="heading-left">
+            <h2 class="title mb-0">Games Coming Soon</h2>
+        </div>
+
+        <div class="heading-right">
+            <a routerLink="/shop/sidebar/list" class="title-link">View more products <i
+                    class="icon-long-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <div class="games-soon">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="products">
+                    <div class="row" *ngIf="!loaded else loadedBlock">
+                        <div class="col-6 col-md-4 skel-pro" *ngFor="let item of [1,2,3,4,5,6]">
+                        </div>
+                    </div>
+                    <ng-template #loadedBlock>
+                        <div class="row">
+                            <molla-product-twelve [product]="product"
+                                *ngFor="let product of products | attrFilter: 'new'" class="col-6 col-md-4">
+                            </molla-product-twelve>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+
+            <div class="col-lg-5 order-first">
+                <owl-carousel carouselClasses="games-banners-slider owl-simple" [options]="bannerSlider">
+                    <div class="banner banner-overlay product-banner">
+                        <figure class="mb-0">
+                            <img src="assets/images/home/banners/banner-9.jpg" width="456" height="750" alt="Banner">
+                        </figure>
+                        <div class="banner-content align-items-center center">
+                            <h4 class="banner-subtitle text-white">Out 14 May 2019</h4>
+                            <img class="banner-title-img" src="assets/images/home/banners/banner-9-title.png"
+                                alt="Banner-9">
+                            <h4 class="banner-price">$29.99</h4>
+                            <a routerLink="/shop/sidebar/list" class="banner-link">Pre-Order Now<i
+                                    class="icon-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="banner banner-overlay product-banner">
+                        <figure class="mb-0">
+                            <img src="assets/images/home/banners/banner-10.jpg" width="456" height="750" alt="Banner">
+                        </figure>
+                        <div class="banner-content">
+                            <h4 class="banner-subtitle text-white">Out 14 May 2019</h4>
+                            <img class="banner-title-img" src="assets/images/home/banners/banner-10-title.png"
+                                alt="Banner-10">
+                            <h4 class="banner-price">$79.99</h4>
+                            <a routerLink="/shop/sidebar/list" class="banner-link">Pre-Order Now<i
+                                    class="icon-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="banner banner-overlay product-banner">
+                        <figure class="mb-0">
+                            <img src="assets/images/home/banners/banner-11.jpg" width="456" height="750" alt="Banner">
+                        </figure>
+                        <div class="banner-content align-items-center center">
+                            <h4 class="banner-subtitle text-white">Out 14 May 2019</h4>
+                            <img class="banner-title-img" src="assets/images/home/banners/banner-11-title.png"
+                                alt="Banner-11">
+                            <h4 class="banner-txt">Main Game & Kombat Pack</h4>
+                            <img class="banner-title-img" src="assets/images/home/banners/banner-11-subtitle.png"
+                                alt="Banner-11">
+                            <h4 class="banner-price mt-1">$99.99</h4>
+                            <a routerLink="/shop/sidebar/list" class="banner-link">Pre-Order Now<i
+                                    class="icon-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </owl-carousel>
+            </div>
+        </div>
+    </div>
+</div>

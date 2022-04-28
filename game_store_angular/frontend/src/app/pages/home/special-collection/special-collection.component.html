@@ -1,0 +1,26 @@
+<div class="bg-light pt-3 pb-5 mb-5" contentAnim aniName="fadeInUpShorter">
+    <div class="container">
+        <ul ngbNav #nav="ngbNav" class="nav nav-pills nav-big nav-border-anim justify-content-center mb-3" class="tab-content-carousel"
+            [destroyOnHide]="false">
+             <li [ngbNavItem]="titles[attr]" *ngFor="let attr of attrs">
+                <ng-template ngbNavContent>
+                    <owl-carousel carouselClasses="owl-simple carousel-equal-height carousel-with-shadow"
+                        [options]="specialSlider" *ngIf="!loaded else loadedBlock">
+                        <div class="skel-pro" *ngFor="let i of [1,2,3,4,5,6]"></div>
+                    </owl-carousel>
+                    <ng-template #loadedBlock>
+                        <owl-carousel
+                            carouselClasses="owl-simple carousel-equal-height carousel-with-shadow products-carousel"
+                            [options]="specialSlider">
+                            <molla-product-twelve [product]="product"
+                                *ngFor="let product of (products | attrFilter : attr ).slice(0,8)"
+                                style="display: flex; align-items:stretch">
+                            </molla-product-twelve>
+                        </owl-carousel>
+                    </ng-template>
+                </ng-template>
+            </li>
+        </ul>
+        <div [ngbNavOutlet]="nav"></div>
+    </div>
+</div>

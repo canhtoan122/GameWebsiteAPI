@@ -1,0 +1,25 @@
+<div class="blog-posts bg-light pt-4 pb-7">
+    <div class="container">
+        <div class="heading heading-flex mb-2 mt-1">
+            <div class="heading-left">
+                <h2 class="title mb-0">From Our Blog</h2>
+            </div>
+
+            <div class="heading-right">
+                <a routerLink="/blog/classic" class="title-link">View more articles <i
+                        class="icon-long-arrow-right"></i></a>
+            </div>
+        </div>
+        <owl-carousel carouselClasses="carousel-with-shadow owl-simple blog-carousel custom-carousel-equal-height"
+            [options]="blogSlider" *ngIf="!loaded else loadedBlock">
+            <div class="skel-pro" *ngFor="let i of [1,2,3,4,5]"></div>
+        </owl-carousel>
+        <ng-template #loadedBlock>
+            <owl-carousel carouselClasses="carousel-with-shadow owl-simple blog-carousel custom-carousel-equal-height"
+                [options]="blogSlider">
+                <molla-post-four [post]="post" *ngFor="let post of posts">
+                </molla-post-four>
+            </owl-carousel>
+        </ng-template>
+    </div>
+</div>
